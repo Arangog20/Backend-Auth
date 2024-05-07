@@ -7,7 +7,7 @@ import {MongooseModule} from '@nestjs/mongoose';
     imports: [
         MongooseModule.forFeatureAsync({
             useFactory: () => {
-                
+                qwe
             }
         })
     ]
