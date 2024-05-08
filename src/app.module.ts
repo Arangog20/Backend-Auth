@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ModuleModule } from './libs/auth.module';
+import { AuthModule } from './libs/auth/auth.module';
 import dbConfig from './libs/persistence/db.config';
 import { PersistenceModule } from './libs/persistence/persistence.module';
 import { StudentsModule } from './modules/students/students.module';
 import { TeachersModule } from './modules/teachers/teachers.module';
 
 @Module({
-  imports: [ModuleModule,
+  imports: [AuthModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       load: [dbConfig],
