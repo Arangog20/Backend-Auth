@@ -32,6 +32,7 @@ export class RegisterTeachersDto {
     @ApiProperty()
     @IsOptional()
     @IsNumber()
+    
     document: number;
 
     @ApiProperty()

@@ -12,7 +12,8 @@ export class TeachersService {
 
     async create (createTeahcerDtos: RegisterTeachersDto): Promise<Teachers>{
         const existingTeacher = await this.teacherModel
-        .findOne();
+        .findOne({document: createTeahcerDtos.document})
+        .exec();
         if (existingTeacher) {
             throw new HttpException(
                 `Teacher with document ${createTeahcerDtos.document} already exists`,

@@ -2,18 +2,19 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { RegisterTeachersDto, TeacherLoginDto } from '../dtos';
 import { TeachersService } from '../services/teachers.service';
 
+
 @Controller('teachers')
 export class TeachersController {
 
-    constructor(private readonly TeacherService: TeachersService){}
+    constructor(private readonly TeachersService: TeachersService){}
 
     @Post('register')
-    async register(@Body() registerTeacherDto: RegisterTeachersDto) {
-        return this.TeacherService.create(registerTeacherDto);
+    async register(@Body() registerDto: RegisterTeachersDto) {
+        return this.TeachersService.create(registerDto);
     }
 
     @Post('login')
     async login(@Body() loginTeacherDto: TeacherLoginDto) {
-        return this.TeacherService.login(loginTeacherDto);
+        return this.TeachersService.login(loginTeacherDto);
     }
 }

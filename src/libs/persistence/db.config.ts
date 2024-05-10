@@ -1,4 +1,4 @@
-import {registerAs} from '@nestjs/config'
+import {registerAs} from '@nestjs/Config'
 
 export default registerAs('dbConfig', () => {
     const dbConfig = {

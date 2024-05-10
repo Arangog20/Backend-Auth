@@ -6,7 +6,6 @@ import {
     IsEnum,
     IsNumber,
     IsString,
-    IsDate,
     IsOptional,
     Length,
     Matches,
@@ -38,17 +37,15 @@ export class Teachers extends Document {
     email: string;
 
     @IsString()
-    @Length(6,8)
     @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
         message: 'password too weak',})
-    @Prop({required:true, min: 6, max:8})
+    @Prop({required:true, min: 6, max:20})
     password: string;
 
     @IsOptional()
     @IsEnum(Role)
-    @Prop({type:String, enum:Role, default: Role.STUDENT})
+    @Prop({type:String, enum:Role, default: Role.TEACHER})
     role: Role;
 }
 
 export const TeachersSchema = SchemaFactory.createForClass(Teachers);
-
