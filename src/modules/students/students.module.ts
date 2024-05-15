@@ -11,6 +11,7 @@ import { StudentsController } from './controller/students.controller';
             schema: StudentsSchema }])
     ],
     providers: [StudentsService],
+    exports: [StudentsService],
     controllers: [StudentsController],
     
 })

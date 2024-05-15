@@ -6,7 +6,7 @@ import { IS_PUBLIC_KEY } from '../../decorators';
 
 import dbConfig from 'src/libs/persistence/db.config';
 import { ConfigType } from '@nestjs/config';
-import { config } from 'process';
+
 
 
 @Injectable()

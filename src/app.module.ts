@@ -4,6 +4,7 @@ import dbConfig from './libs/persistence/db.config';
 import { PersistenceModule } from './libs/persistence/persistence.module';
 import { TeachersModule } from './modules/teachers/teachers.module';
 import { StudentsModule } from './modules/students/students.module';
+import { AuthModule } from './libs/auth/auth.module';
 
 
 @Module({
@@ -16,6 +17,7 @@ import { StudentsModule } from './modules/students/students.module';
 
     StudentsModule ,
     TeachersModule,
+    AuthModule,
     PersistenceModule],
   controllers: [],
   providers: [

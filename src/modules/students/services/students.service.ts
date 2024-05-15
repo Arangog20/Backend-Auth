@@ -27,7 +27,7 @@ async create(createStudentDto: RegisterStudentsDto): Promise<Students> {
     const createStudent = new this.studentModel(createStudentDto);
     return await createStudent.save();
   }
-
+  
   async findByEmail(email: string): Promise<Students>{
     const existingStudent = await this.studentModel
      .findOne({ email: email })
@@ -40,8 +40,6 @@ async create(createStudentDto: RegisterStudentsDto): Promise<Students> {
     }
     return existingStudent;
   }
-
- 
 
   async findOne(_id: string): Promise<Students> {
     const findId = await this.studentModel.findById(_id).exec();
