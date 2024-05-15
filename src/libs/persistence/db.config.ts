@@ -9,6 +9,7 @@ export default registerAs('dbConfig', () => {
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         cluster: process.env.DB_CLUSTER,
+        apikey: process.env.API_KEY,
       },
       env: process.env.NODE_ENV || 'local',
     };

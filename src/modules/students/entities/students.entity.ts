@@ -1,6 +1,6 @@
 import {Schema, Prop, SchemaFactory} from '@nestjs/mongoose';
 import {Document} from 'mongoose';
-import { Transform } from 'class-transformer';
+import { Exclude, Transform } from 'class-transformer';
 import {
     IsEmail,
     IsEnum,
@@ -21,6 +21,10 @@ export enum Role {
 @Schema({timestamps: true})
 export class Students extends Document {
     
+    @IsOptional()
+    @IsString()
+    _id: string;
+
     @IsString()
     @Length(3,50)
     @Prop({required:true})
@@ -38,11 +42,12 @@ export class Students extends Document {
     @Prop({required:true, unique:true})
     email: string;
 
+    @Exclude()
     @IsString()
-    @Length(6,8)
+    @Length(6,10)
     @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
         message: 'password too weak',})
-    @Prop({required:true, min: 6, max:8})
+    @Prop({required:true, min: 6, max:10})
     password: string;
     
     @IsNumber()
@@ -50,7 +55,7 @@ export class Students extends Document {
     phone: number;
 
     @IsDate()
-    @Prop({required:true})
+    @Prop()
     dateBirth: Date;
 
     @Prop({required:true})

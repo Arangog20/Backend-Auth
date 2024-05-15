@@ -2,8 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import dbConfig from './libs/persistence/db.config';
 import { PersistenceModule } from './libs/persistence/persistence.module';
-import { StudentsModule } from './modules/students/students.module';
 import { TeachersModule } from './modules/teachers/teachers.module';
+import { StudentsModule } from './modules/students/students.module';
+
 
 @Module({
   imports: [
@@ -13,10 +14,12 @@ import { TeachersModule } from './modules/teachers/teachers.module';
       isGlobal: true,
     }),
 
-    StudentsModule,
+    StudentsModule ,
     TeachersModule,
     PersistenceModule],
   controllers: [],
-  providers: [],
+  providers: [
+   
+  ],
 })
 export class AppModule { }

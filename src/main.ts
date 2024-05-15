@@ -7,13 +7,15 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 4000;
 
-  app.useGlobalPipes(new ValidationPipe(
-    {
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
+   app.useGlobalPipes(new ValidationPipe(
+     {
+        whitelist: true,
+       forbidNonWhitelisted: true,
+      transformOptions:{
+        enableImplicitConversion: true,
+      }
     }
-  ));
+   ));
   // bloqueos de consultas externas restringe la capacidad de una aplicación o sistema para realizar solicitudes o consultas a recursos externos,
   app.enableCors();
   

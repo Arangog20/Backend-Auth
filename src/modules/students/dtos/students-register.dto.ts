@@ -10,6 +10,12 @@ import {
 
 
 export class RegisterStudentsDto {
+
+    @ApiProperty()
+    @IsOptional()
+    @IsString()
+    _id: string;
+
     @ApiProperty()
     @IsOptional()
     @IsString()
@@ -30,7 +36,7 @@ export class RegisterStudentsDto {
     password: string;
 
     @ApiProperty()
-    @IsOptional()
+    @IsNotEmpty()
     @IsNumber()
     phone: number;
 
