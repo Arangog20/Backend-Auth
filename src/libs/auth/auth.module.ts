@@ -4,14 +4,17 @@ import { AuthService } from './services/auth.service';
 import { StudentsModule } from 'src/modules/students/students.module';
 import { LocalStrategy } from './strategies/local.strategy';
 import { AuthController } from './controllers/auth.controller';
-import { StudentsService } from 'src/modules/students/services/students.service';
 import { UtilsModule } from '../utils/utils.module';
 import { TeachersModule } from 'src/modules/teachers/teachers.module';
-import { TeachersService } from 'src/modules/teachers/services/teachers.service';
+import { JwtModule } from '@nestjs/jwt';
 
 
 @Module({
   imports :[
+    JwtModule.register({
+      secret: process.env.JWT_SECRET || 'mi-secret',
+      signOptions: { expiresIn: process.env.JWT_SECRET_EXPIRATION || '15m' },
+    }),
     
     TeachersModule,
     StudentsModule,

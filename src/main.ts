@@ -5,6 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('/v1/api');
   const port = process.env.PORT || 4000;
 
    app.useGlobalPipes(new ValidationPipe(
@@ -24,11 +25,11 @@ async function bootstrap() {
   .setDescription('authentication with NestJs and MongoDB ')
   .setVersion('1.0')
   .addTag('Mindset')
+  .addBearerAuth()
   .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
   
-  app.setGlobalPrefix('/v1/api');
   console.log(`Running app on :http://localhost:${port}/v1/api`);
 
   await app.listen(port);

@@ -5,6 +5,7 @@ export class StudentsLoginDto {
 
   @ApiProperty()
   @IsEmail()
+  @IsString()
   email: string;
 
   @ApiProperty()

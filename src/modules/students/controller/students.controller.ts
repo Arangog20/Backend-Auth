@@ -27,14 +27,14 @@ export class StudentsController {
     }
 
     @Roles('student')
-    @Get('email')
-    findByEmail(@Body('email') email: string) {
+    @Get('email/:email')
+    findByEmail(@Param('email') email: string) {
         return this.StudentsService.findByEmail(email);
     }
-
     
     @Get (':_id')
     findOne(@Param('_id') _id: string) {
         return this.StudentsService.findOne(_id);
     }
+    
 }
