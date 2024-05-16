@@ -20,13 +20,13 @@ export class StudentsController {
     constructor(private readonly StudentsService : StudentsService){}
     
     @Public()
-    @Roles('teacher')
+    @Roles('student')
     @Post('register')
     async register(@Body() registerDto: RegisterStudentsDto) {
         return this.StudentsService.create(registerDto);
     }
 
-    @Roles('teacher')
+    @Roles('student')
     @Get('email')
     findByEmail(@Body('email') email: string) {
         return this.StudentsService.findByEmail(email);

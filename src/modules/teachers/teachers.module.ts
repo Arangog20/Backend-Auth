@@ -11,6 +11,7 @@ import { TeachersService } from './services/teachers.service';
             schema: TeachersSchema }])
     ],
     providers: [TeachersService],
+    exports: [TeachersService],
     controllers: [TeachersController],
 })
 export class TeachersModule {}

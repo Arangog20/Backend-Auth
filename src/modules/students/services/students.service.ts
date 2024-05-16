@@ -3,7 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Students } from "../entities/students.entity";
 import { Model } from "mongoose";
 import { hash } from "bcrypt"
-import { RegisterStudentsDto, StudentsLoginDto } from "../dtos";
+import { RegisterStudentsDto } from "../dtos";
 
 @Injectable()
 export class StudentsService {
