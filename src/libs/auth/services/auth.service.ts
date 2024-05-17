@@ -32,17 +32,13 @@ export class AuthService {
 
     async LoginSrudent(studentsLoginDto:StudentsLoginDto) {
         const user =  await this.studentsService.findByEmail(studentsLoginDto.email);
-    
         if (!user) {
-            throw new UnauthorizedException('not allow');
+            throw new UnauthorizedException( `the email ${studentsLoginDto.email} was not found` );
         }
-
         const passwordValidate = await bcrypt.compare(studentsLoginDto.password, user.password);
-
         if (!passwordValidate) {
-            throw new UnauthorizedException('not allow');
+            throw new UnauthorizedException('incorrect password');
         }
-
         if(passwordValidate){
             const final = this.generateJwt(user);
             return final;  

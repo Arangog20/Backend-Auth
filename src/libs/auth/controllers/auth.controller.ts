@@ -15,10 +15,10 @@ export class AuthController {
 //     login(@Req() req: Request){
 //     return req.user;
 //     }
-
+    @Post('login')
     async loginStudent(@Body()studentsLoginDto:StudentsLoginDto){
         const student = await this.authService.LoginSrudent(studentsLoginDto);
-        return ;
+        return student;
     }
 
 }
