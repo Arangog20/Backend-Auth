@@ -1,65 +1,61 @@
-import {Schema, Prop, SchemaFactory} from '@nestjs/mongoose';
-import {Document} from 'mongoose';
-import { Transform } from 'class-transformer';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
+import { Exclude, Transform } from 'class-transformer';
 import {
-    IsEmail,
-    IsEnum,
-    IsNumber,
-    IsString,
-    IsDate,
-    IsOptional,
-    Length,
-    Matches,
+  IsEmail,
+  IsEnum,
+  IsNumber,
+  IsString,
+  IsDate,
+  IsOptional,
+  Length,
+  Matches,
 } from 'class-validator';
 
-export enum Role {
-    ADMIN = 'admin',
-    STUDENT = 'student',
-    TEACHER = 'teacher',
-}
 
-@Schema({timestamps: true})
+@Schema({ timestamps: true })
 export class Students extends Document {
-    
-    @IsString()
-    @Length(3,50)
-    @Prop({required:true})
-    name: string;
+  @IsOptional()
+  @IsString()
+  _id: string;
 
-    @Prop({required:true})
-    lastname: string;
+  @IsString()
+  @Length(3, 50)
+  @Prop({ required: true })
+  name: string;
 
-    @IsNumber()
-    @Prop({required:true, unique:true})
-    document: number;
+  @Prop({ required: true })
+  lastname: string;
 
-    @IsEmail()
-    //@Transform(({value} => value.toLowerCase()))
-    @Prop({required:true, unique:true})
-    email: string;
+  @IsString()
+  @Prop({ required: true, unique: true })
+  document: string;
 
-    @IsString()
-    @Length(6,8)
-    @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
-        message: 'password too weak',})
-    @Prop({required:true, min: 6, max:8})
-    password: string;
-    
-    @IsNumber()
-    @Prop({required:true})
-    phone: number;
+  @IsEmail()
+  @Transform(({ value }) => value.toLowerCase())
+  @Prop({ required: true, unique: true })
+  email: string;
 
-    @IsDate()
-    @Prop({required:true})
-    dateBirth: Date;
+  @Exclude()
+  @IsString()
+  @Length(6, 10)
+  @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
+    message: 'password too weak',
+  })
+  @Prop({ required: true, min: 6, max: 10 })
+  password: string;
 
-    @Prop({required:true})
-    clan: string;
+  @IsNumber()
+  @Prop({ required: true })
+  phone: number;
 
-    @IsOptional()
-    @IsEnum(Role)
-    @Prop({type:String, enum:Role, default: Role.STUDENT})
-    role: Role;
+  @IsOptional()
+  @Prop()
+  dateBirth: Date;
+
+  @Prop({ required: true })
+  clan: string;
+
 }
 
 export const StudentsSchema = SchemaFactory.createForClass(Students);

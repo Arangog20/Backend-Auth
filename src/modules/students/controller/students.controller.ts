@@ -1,26 +1,33 @@
-import { 
-    Controller,
-    Body,
-    Post,
+import {
+  Controller,
+  Body,
+  Post,
+  Get,
+  Param,
 } from '@nestjs/common';
-import { StudentsLoginDto } from '../dtos';
 import { RegisterStudentsDto } from '../dtos';
 import { StudentsService } from '../services/students.service';
-
+import { Public, Roles } from 'src/libs/decorators';
 
 @Controller('students')
 export class StudentsController {
-    
-    constructor(private readonly StudentsService : StudentsService){}
+  constructor(private readonly StudentsService: StudentsService) {}
 
-    @Post('register')
-    async register(@Body() registerDto: RegisterStudentsDto) {
-        return this.StudentsService.create(registerDto);
-    }
+  @Public()
+  @Roles('student')
+  @Post('register')
+  async register(@Body() registerDto: RegisterStudentsDto) {
+    return this.StudentsService.create(registerDto);
+  }
 
-    @Post('login')
-    async login(@Body() loginDto: StudentsLoginDto) {
-        return this.StudentsService.login(loginDto);
-    }
+  @Roles('student')
+  @Get('email')
+  findByEmail(@Body('email') email: string) {
+    return this.StudentsService.findByEmail(email);
+  }
 
+  @Get(':_id')
+  findOne(@Param('_id') _id: string) {
+    return this.StudentsService.findOne(_id);
+  }
 }

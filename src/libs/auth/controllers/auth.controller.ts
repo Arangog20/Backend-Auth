@@ -1,8 +1,9 @@
-import { Roles } from 'src/libs/decorators/roles.decorator';
-import { Controller, Body, Post, HttpCode, HttpStatus } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Req, UseGuards } from '@nestjs/common';
+import { Public } from '../../decorators/public.decorator';
+import { Roles } from '../../decorators';
 import { AuthService } from '../services/auth.service';
-import { UserLoginDto, SignUpDto } from '../dtos/export';
-import { Public } from 'src/libs/decorators/exports';
+import { UserLoginDto } from '../dtos/login.dto';
+import { SignUpDto } from '../dtos/signup.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -15,7 +16,8 @@ export class AuthController {
     return this.authService.login(userLoginDto);
   }
 
-  @Roles('admin')
+  // @Roles('admin')
+  @Public()
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   register(@Body() signUpDto: SignUpDto) {

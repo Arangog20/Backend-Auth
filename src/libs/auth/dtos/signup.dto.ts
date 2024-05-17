@@ -11,7 +11,7 @@ export class SignUpDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  phone: string;
+  phone: number;
 
   @ApiProperty()
   @IsString()
@@ -21,7 +21,7 @@ export class SignUpDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsNotEmpty()
-  document: number;
+  document: string;
 
   @ApiProperty()
   @IsEmail()
@@ -33,6 +33,16 @@ export class SignUpDto {
   @IsString()
   @IsNotEmpty()
   password: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  dateBirth: Date;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  clan: string;
 
   @ApiProperty()
   @IsNotEmpty()

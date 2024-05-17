@@ -1,21 +1,24 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { StudentsService } from 'src/modules/students/services/students.service';
+import { UserLoginDto } from '../dtos/login.dto';
+import { HashService } from "../../utils/hash.service";
+import { SignUpDto } from '../dtos/signup.dto';
+import { JwtPayload } from '../types/jwtPayload.type';
+import { Tokens } from '../types/tokens.type';
 import { JwtService } from '@nestjs/jwt';
-import { HashService } from 'src/libs/shared/hash/hash.service';
-import { AdminService } from 'src/modules/Users/services/User.service';
-import { UserLoginDto, SignUpDto } from '../dtos/export';
-import { Tokens, JwtPayload } from '../types/export';
-import { Admin } from 'src/modules/Users/entities/User.entity';
+import { Students } from 'src/modules/students/entities/students.entity';
+
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly jwtService: JwtService,
-    private readonly adminService: AdminService,
-    private readonly hashService: HashService,
+    private readonly studentsService: StudentsService,
+    private readonly hash: HashService,
+    private readonly jwtService: JwtService
   ) {}
 
   async validateUser(payload: JwtPayload) {
-    const user = await this.adminService.findOne(payload.sub.toString());
+    const user = await this.studentsService.findOne(payload.sub.toString());
     if (!user) {
       throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
     }
@@ -23,24 +26,32 @@ export class AuthService {
   }
 
   async login(loginDto: UserLoginDto): Promise<Tokens> {
-    const { email, password } = loginDto;
-    const user = await this.adminService.findOneByEmail(email);
+    const { document, password } = loginDto;
+    const user = await this.studentsService.findOneByDocument(document);
 
-    if (!user || !(await this.hashService.compare(password, user.password))) {
+    if (!user || !(await this.hash.compare(password, user.password))) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
 
     return this.getTokens({ sub: user.id });
   }
 
-  async register(signUPDto: SignUpDto): Promise<Admin> {
-    await this.validateEmailForSignUp(signUPDto.email);
+  async register(SignUpDto: SignUpDto): Promise<Students> {
+    await this.validateEmailForSignUp(SignUpDto.email);
 
-    const hashedPassword = await this.hashService.hash(signUPDto.password);
+    const hashedPassword = await this.hash.hash(SignUpDto.password);
 
-    const user = await this.adminService.create({
-      ...signUPDto,
+    const user = await this.studentsService.create({
+      _id: '',
+      email: SignUpDto.email,
       password: hashedPassword,
+      name: SignUpDto.name,
+      lastname: SignUpDto.lastname,
+      phone: SignUpDto.phone,
+      document: SignUpDto.document,
+      clan: SignUpDto.clan,
+      role: SignUpDto.role,
+      dateBirth: SignUpDto.dateBirth
     });
 
     await user.save();
@@ -73,11 +84,13 @@ export class AuthService {
   }
 
   async validateEmailForSignUp(email: string): Promise<boolean | undefined> {
-    const user = await this.adminService.findOneByEmailRegister(email);
+    const user = await this.studentsService.findOneByEmailRegister(email);
 
     if (user) {
       throw new HttpException('Email already exists! Try again', 400);
     }
     return true;
   }
+
+
 }

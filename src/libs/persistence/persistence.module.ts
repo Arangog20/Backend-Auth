@@ -1,7 +1,7 @@
 import { Global, Module } from '@nestjs/common';
-import {ConfigType} from '@nestjs/config';
-import {MongooseModule} from '@nestjs/mongoose';
-import dbConfig from './db.config';
+import { ConfigType } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import dbConfig from './db_config';
 
 @Global()
 @Module({
@@ -10,9 +10,9 @@ import dbConfig from './db.config';
       useFactory: (configService: ConfigType<typeof dbConfig>) => {
         const { db, env } = configService;
         const uriDb =
-          env === 'production'
-            ? `${db.connection}${db.host}/${db.name}`
-            : `mongodb+srv://${db.user}:${db.password}${db.cluster}.mongodb.net/${db.name}?retryWrites=true&w=majority`;
+          env === 'local'
+            ? `mongodb+srv://${db.user}:${db.password}@clases.xi4viq3.mongodb.net/`
+            : `${db.connection}${db.host}/${db.name}`;
         return {
           uri: uriDb,
         };

@@ -1,56 +1,60 @@
-import {ApiProperty} from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import {
-    IsEmail, 
-    IsNotEmpty,
-    IsNumber,
-    IsOptional,
-    IsString,
-    IsDate,
- } from 'class-validator';
-
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsDate,
+} from 'class-validator';
 
 export class RegisterStudentsDto {
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    name: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  _id: string;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    lastname: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  name: string;
 
-    @ApiProperty()
-    @IsEmail()
-    email: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  lastname: string;
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    password: string;
+  @ApiProperty()
+  @IsEmail()
+  email: string;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsNumber()
-    phone: number;
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsNumber()
-    document: number;
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsNumber()
+  phone: number;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsDate()
-    dateBirth: Date;
-    
-    @ApiProperty()
-    @IsString()
-    @IsOptional()
-    clan: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  document: string;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    role: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsDate()
+  dateBirth: Date;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  clan: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  role: string;
 }

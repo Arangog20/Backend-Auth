@@ -1,23 +1,25 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './libs/auth/auth.module';
-import dbConfig from './libs/persistence/db.config';
+import dbConfig from './libs/persistence/db_config';
 import { PersistenceModule } from './libs/persistence/persistence.module';
-import { StudentsModule } from './modules/students/students.module';
 import { TeachersModule } from './modules/teachers/teachers.module';
+import { StudentsModule } from './modules/students/students.module';
+import { AuthModule } from './libs/auth/auth.module';
 
 @Module({
-  imports: [AuthModule,
+  imports: [
     ConfigModule.forRoot({
       envFilePath: '.env',
       load: [dbConfig],
       isGlobal: true,
     }),
 
+    AuthModule,
     StudentsModule,
     TeachersModule,
-    PersistenceModule],
+    PersistenceModule,
+  ],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

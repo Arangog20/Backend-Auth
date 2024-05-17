@@ -1,22 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './controllers/auth.controller';
-import { JwtStrategy } from './Strategy/jwt.strategy';
+import { JwtModule, JwtService } from '@nestjs/jwt';
+import { UtilsModule } from '../utils/utils.module';
+import { StudentsModule } from '../../modules/students/students.module';
 import { AuthService } from './services/auth.service';
-import { JwtModule } from '@nestjs/jwt';
-import { EncriptModule } from '../shared/share.module';
-import { AdminModule } from '../../modules/Users/User.module';
+import { JwtStrategy } from './Strategy/jwt.strategy';
 
 @Module({
   imports: [
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_SECRET || 'hola',
       signOptions: { expiresIn: process.env.ACCES_TOKEN_EXPIRE || '1h' },
     }),
-
-    EncriptModule,
-    AdminModule,
+    UtilsModule,
+    StudentsModule,
   ],
   controllers: [AuthController],
-  providers: [JwtStrategy, AuthService],
+  providers: [AuthService,  JwtStrategy,],
 })
 export class AuthModule {}
