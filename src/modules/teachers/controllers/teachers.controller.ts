@@ -14,8 +14,8 @@ export class TeachersController {
   }
 
   @Roles('teacher')
-  @Get('email')
-  findByEmail(@Body('email') email: string) {
+  @Get('email/:email')
+  findByEmail(@Param('email') email: string) {
     return this.teachersService.findByEmail(email);
   }
 

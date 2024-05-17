@@ -16,11 +16,11 @@ export class AuthController {
     return this.authService.login(userLoginDto);
   }
 
-  // @Roles('admin')
+  @Roles('admin')
   @Public()
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
   register(@Body() signUpDto: SignUpDto) {
     return this.authService.register(signUpDto);
   }
-}
+ }

@@ -11,8 +11,8 @@ import dbConfig from './db_config';
         const { db, env } = configService;
         const uriDb =
           env === 'local'
-            ? `mongodb+srv://${db.user}:${db.password}@clases.xi4viq3.mongodb.net/`
-            : `${db.connection}${db.host}/${db.name}`;
+            ? `mongodb+srv://${db.user}:${db.password}@cluster1.ael9blo.mongodb.net/`
+            : `${db.connection}${db.host}`;
         return {
           uri: uriDb,
         };
@@ -22,3 +22,5 @@ import dbConfig from './db_config';
   ],
 })
 export class PersistenceModule {}
+
+

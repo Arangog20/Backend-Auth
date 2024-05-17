@@ -21,8 +21,8 @@ export class StudentsController {
   }
 
   @Roles('student')
-  @Get('email')
-  findByEmail(@Body('email') email: string) {
+  @Get('email/:email')
+  findByEmail(@Param('email') email: string) {
     return this.StudentsService.findByEmail(email);
   }
 

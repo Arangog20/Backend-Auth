@@ -6,6 +6,8 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 4000;
+  
+  app.setGlobalPrefix('/v1/api');
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -28,7 +30,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
 
-  app.setGlobalPrefix('/v1/api');
   console.log(`Running app on :http://localhost:${port}/v1/api`);
 
   await app.listen(port);
