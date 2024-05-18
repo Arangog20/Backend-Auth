@@ -23,8 +23,6 @@ export class Teachers extends Document {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
-  lastname: string;
 
   @IsString()
   @Prop({ required: true, unique: true })

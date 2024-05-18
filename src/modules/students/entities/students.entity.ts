@@ -19,13 +19,15 @@ export class Students extends Document {
   @IsString()
   _id: string;
 
+  @IsOptional()
+  @IsString()
+  photo: string;
+
   @IsString()
   @Length(3, 50)
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
-  lastname: string;
 
   @IsString()
   @Prop({ required: true, unique: true })
@@ -38,16 +40,13 @@ export class Students extends Document {
 
   @Exclude()
   @IsString()
-  @Length(6, 10)
-  @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
-    message: 'password too weak',
-  })
-  @Prop({ required: true, min: 6, max: 10 })
+  @Length(6, 15)
+  @Prop({ required: true, min: 6, max: 15 })
   password: string;
 
-  @IsNumber()
+  @IsString()
   @Prop({ required: true })
-  phone: number;
+  phone: string;
 
   @IsOptional()
   @Prop()

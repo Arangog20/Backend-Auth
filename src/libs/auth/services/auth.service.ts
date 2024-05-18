@@ -43,10 +43,10 @@ export class AuthService {
 
     const user = await this.studentsService.create({
       _id: '',
+      photo:SignUpDto.photo,
       email: SignUpDto.email,
       password: hashedPassword,
       name: SignUpDto.name,
-      lastname: SignUpDto.lastname,
       phone: SignUpDto.phone,
       document: SignUpDto.document,
       clan: SignUpDto.clan,

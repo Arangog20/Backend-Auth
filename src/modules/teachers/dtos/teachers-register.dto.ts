@@ -13,10 +13,7 @@ export class RegisterTeachersDto {
   @IsString()
   name: string;
 
-  @ApiProperty()
-  @IsOptional()
-  @IsString()
-  lastname: string;
+ 
 
   @ApiProperty()
   @IsEmail()

@@ -17,12 +17,12 @@ export class RegisterStudentsDto {
   @ApiProperty()
   @IsOptional()
   @IsString()
-  name: string;
+  photo: string;
 
   @ApiProperty()
   @IsOptional()
   @IsString()
-  lastname: string;
+  name: string;
 
   @ApiProperty()
   @IsEmail()
@@ -35,8 +35,8 @@ export class RegisterStudentsDto {
 
   @ApiProperty()
   @IsNotEmpty()
-  @IsNumber()
-  phone: number;
+  @IsString()
+  phone: string;
 
   @ApiProperty()
   @IsOptional()
