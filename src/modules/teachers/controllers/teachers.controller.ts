@@ -1,12 +1,13 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { RegisterTeachersDto, TeacherLoginDto } from '../dtos';
+import { RegisterTeachersDto } from '../dtos';
 import { TeachersService } from '../services/teachers.service';
-import { Roles } from 'src/libs/decorators';
+import { Public, Roles } from 'src/libs/decorators';
 
 @Controller('teachers')
 export class TeachersController {
   constructor(private readonly teachersService: TeachersService) {}
 
+  @Public()
   @Roles('teacher')
   @Post('register')
   async register(@Body() registerDto: RegisterTeachersDto) {

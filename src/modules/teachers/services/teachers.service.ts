@@ -1,16 +1,27 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { Teachers } from '../entities/teachers.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { RegisterTeachersDto } from '../dtos';
+import  axios  from 'axios';
 
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class TeachersService {
   constructor(
+    private readonly springBootUrl = 'http://localhost:8080/api/v1/coders',
     @InjectModel(Teachers.name) protected teacherModel: Model<Teachers>,
   ) {}
+
+  async sendDataToSpringBoot(data: any): Promise<string> {
+    try {
+        const response = await axios.post(this.springBootUrl, data);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error sending data to Spring Boot: ${error.message}`);
+    }
+}
 
   async create(createTeahcerDtos: RegisterTeachersDto): Promise<Teachers> {
     const existingTeacher = await this.teacherModel
@@ -58,4 +69,12 @@ export class TeachersService {
 
     return findId;
   }
+  async findOneByDocument(document: string): Promise<Teachers> {
+    const admin = await this.teacherModel.findOne({ document }).exec();
+    if (!admin) {
+      throw new NotFoundException(`user with document address ${document} not found`);
+    }
+    return admin;
+  }
+  
 }
