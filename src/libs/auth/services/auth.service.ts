@@ -42,7 +42,6 @@ export class AuthService {
     const hashedPassword = await this.hash.hash(SignUpDto.password);
 
     const user = await this.studentsService.create({
-      _id: '',
       photo:SignUpDto.photo,
       email: SignUpDto.email,
       password: hashedPassword,
