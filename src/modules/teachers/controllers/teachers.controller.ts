@@ -2,7 +2,10 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { RegisterTeachersDto } from '../dtos';
 import { TeachersService } from '../services/teachers.service';
 import { Public, Roles } from 'src/libs/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('Teacher')
 @Controller('teachers')
 export class TeachersController {
   constructor(private readonly teachersService: TeachersService) {}

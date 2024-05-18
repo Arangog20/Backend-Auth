@@ -8,7 +8,9 @@ import {
 import { RegisterStudentsDto } from '../dtos';
 import { StudentsService } from '../services/students.service';
 import { Public, Roles } from 'src/libs/decorators';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags ('Students')
 @Controller('students')
 export class StudentsController {
   constructor(private readonly StudentsService: StudentsService) {}

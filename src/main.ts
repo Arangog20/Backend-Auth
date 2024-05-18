@@ -18,7 +18,7 @@ async function bootstrap() {
       },
     }),
   );
-  // bloqueos de consultas externas restringe la capacidad de una aplicación o sistema para realizar solicitudes o consultas a recursos externos,
+  
   app.enableCors();
 
   const config = new DocumentBuilder()

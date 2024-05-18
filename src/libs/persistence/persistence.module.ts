@@ -10,9 +10,9 @@ import dbConfig from './db_config';
       useFactory: (configService: ConfigType<typeof dbConfig>) => {
         const { db, env } = configService;
         const uriDb =
-          env === 'local'
-            ? `mongodb+srv://${db.user}:${db.password}@cluster1.ael9blo.mongodb.net/`
-            : `${db.connection}${db.host}`;
+          env === 'production' 
+          ? `${db.connection}${db.host}`
+          : `mongodb+srv://${db.user}:${db.password}${db.cluster}.mongodb.net/${db.name}?retryWrites=true&w=majority`;
         return {
           uri: uriDb,
         };
@@ -22,5 +22,6 @@ import dbConfig from './db_config';
   ],
 })
 export class PersistenceModule {}
+
 
 

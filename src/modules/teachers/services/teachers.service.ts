@@ -10,9 +10,11 @@ import * as bcrypt from 'bcrypt';
 @Injectable()
 export class TeachersService {
   constructor(
-    private readonly springBootUrl = 'http://localhost:8080/api/v1/coders',
+    
     @InjectModel(Teachers.name) protected teacherModel: Model<Teachers>,
   ) {}
+
+  private readonly springBootUrl = 'http://localhost:8080/api/v1/coders';
 
   async sendDataToSpringBoot(data: any): Promise<string> {
     try {
@@ -40,8 +42,11 @@ export class TeachersService {
     );
     createTeahcerDtos.password = hashedPassword;
 
-    const createTeacher = new this.teacherModel(createTeahcerDtos);
-    return await createTeacher.save();
+    const createTeacher = await this.teacherModel.create(createTeahcerDtos);
+    let crear = createTeacher.save();
+    this.sendDataToSpringBoot(await crear);
+    console.log(await crear);
+    return await crear;
   }
 
   async findByEmail(email: string): Promise<Teachers> {
