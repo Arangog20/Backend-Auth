@@ -21,13 +21,13 @@ export class Students extends Document {
 
   @IsOptional()
   @IsString()
+  @Prop({ required: true })
   photo: string;
 
   @IsString()
   @Length(3, 50)
   @Prop({ required: true })
   name: string;
-
 
   @IsString()
   @Prop({ required: true, unique: true })
@@ -54,6 +54,11 @@ export class Students extends Document {
 
   @Prop({ required: true })
   clan: string;
+
+  @IsOptional()
+  @IsString()
+  @Prop({ required: true })
+  role: string;
 
 }
 

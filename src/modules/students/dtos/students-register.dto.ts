@@ -9,10 +9,6 @@ import {
 } from 'class-validator';
 
 export class RegisterStudentsDto {
-  @ApiProperty()
-  @IsOptional()
-  @IsString()
-  _id: string;
 
   @ApiProperty()
   @IsOptional()

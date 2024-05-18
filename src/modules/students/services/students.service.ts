@@ -4,6 +4,7 @@ import { Students } from '../entities/students.entity';
 import { Model } from 'mongoose';
 import { hash } from 'bcrypt';
 import { RegisterStudentsDto } from '../dtos';
+import axios from 'axios';
 
 
 @Injectable()
@@ -11,6 +12,17 @@ export class StudentsService {
   constructor(
     @InjectModel(Students.name) private readonly studentModel: Model<Students>,
   ) {}
+
+  private readonly springBootUrl = 'http://localhost:8080/api/v1/coders';
+
+  async sendDataToSpringBoot(data: any): Promise<string> {
+    try {
+        const response = await axios.post(this.springBootUrl, data);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error sending data to Spring Boot: ${error.message}`);
+    }
+}
 
   async create(createStudentDto: RegisterStudentsDto): Promise<Students> {
     const existingStudent = await this.studentModel
@@ -27,7 +39,10 @@ export class StudentsService {
     createStudentDto.password = hashPassword;
 
     const createStudent = await this.studentModel.create(createStudentDto);
-    return await createStudent.save();
+    let crear = createStudent.save();
+    this.sendDataToSpringBoot(await crear);
+    console.log(await crear);
+    return await crear;
   }
 
   async findByEmail(email: string): Promise<Students> {
