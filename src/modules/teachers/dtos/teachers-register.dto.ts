@@ -1,35 +1,67 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
+  IsEmpty,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
 
 export class RegisterTeachersDto {
-  @ApiProperty()
+  @ApiProperty({
+    name: 'name',
+    type: String,
+    required: false,
+    description: '  Teacher name',
+    example: 'Teacher 1',
+  })
   @IsOptional()
   @IsString()
   name: string;
 
  
 
-  @ApiProperty()
+  @ApiProperty({
+    name: 'email',
+    type: String,
+    required: true,
+    description: 'Teacher email',
+    example: 'Teacher1@example.com',
+  })
+  @IsNotEmpty()
   @IsEmail()
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    name: 'password',
+    type: String,
+    required: true,
+    description: 'Teacher password',
+    example: '123456789',
+  })
   @IsNotEmpty()
   @IsString()
   password: string;
 
-  @ApiProperty()
-  @IsOptional()
+  @ApiProperty({
+    name: 'document',
+    type: String,
+    required: true,
+    description: 'Teacher document',
+    example: '123456789',
+  })
+  @IsNotEmpty()
   @IsString()
   document: string;
 
-  @ApiProperty()
+
+  @ApiProperty({
+    name: 'role',
+    type: String,
+    required: false,
+    description: 'Teacher role',
+    example: 'Teacher',
+  })
   @IsOptional()
   @IsString()
   role: string;

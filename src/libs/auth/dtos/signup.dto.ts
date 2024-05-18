@@ -1,52 +1,105 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class SignUpDto {
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
-  name: string;
-
-  @ApiProperty()
+  @ApiProperty({
+    name: 'photo',
+    type:'string',
+    required: false,
+    example: 'https://example.com/photo.jpg',
+    description: 'Photo URL',
+  })
   @IsOptional()
   @IsString()
   photo: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
+  @ApiProperty({
+    name: 'name',
+    type: 'string',
+    required: false,
+    example: 'Manuela',
+    description: 'Student name',
+  })
+  @IsOptional()
   @IsString()
-  phone: string;
+  name: string;
 
-
-  @ApiProperty()
+  @ApiProperty({
+    name: 'email',
+    type: 'string',
+    required: true,
+    example: 'Manuela@gmail.com',
+    description: 'Student email',
+  })
   @IsNotEmpty()
-  @IsNotEmpty()
-  document: string;
-
-  @ApiProperty()
   @IsEmail()
-  @IsNotEmpty()
   @Transform(({ value }) => value.toLowerCase())
   email: string;
 
-  @ApiProperty()
-  @IsString()
+  @ApiProperty({
+    name: 'password',
+    type:'string',
+    required: true,
+    example: '123456',
+    description: 'Student password',
+  })
   @IsNotEmpty()
+  @IsString()
   password: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    name: 'phone',
+    type:'string',
+    required: false,
+    example: '123456789',
+    description: 'Student phone',
+  })
+  @IsOptional()
   @IsString()
+  phone: string;
+
+  @ApiProperty({
+    name: 'document',
+    type:'string',
+    required: true,
+    example: '123456789',
+    description: 'Student document',
+  })
   @IsNotEmpty()
+  @IsString()
+  document: string;
+
+  @ApiProperty({
+    name: 'dateBirth',
+    type:'string',
+    required: false,
+    example: '2021-01-01',
+    description: 'Student date of birth',
+  })
+  @IsOptional()
+  @IsDate()
   dateBirth: Date;
 
-  @ApiProperty()
+  @ApiProperty({
+    name: 'clan',
+    type:'string',
+    required: false,
+    example: '123456789',
+    description: 'Student clan',
+  })
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   clan: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
+  @ApiProperty({
+    name: 'role',
+    type:'string',
+    required: false,
+    example: '123456789',
+    description: 'Student role',
+  })
+  @IsOptional()
   @IsString()
   role: string;
 }

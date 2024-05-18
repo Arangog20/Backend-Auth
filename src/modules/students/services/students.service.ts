@@ -89,4 +89,16 @@ export class StudentsService {
     }
     return admin;
   }
+
+  async removeStudentBydocument(document: string): Promise<Students> {
+    const admin = await this.studentModel.findOneAndDelete({ document }).exec();
+    if (!admin) {
+      throw new HttpException(
+        `Student with document ${document} does not exist`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return admin;
+  }
+  
 }

@@ -7,12 +7,18 @@ import {
 } from 'class-validator';
 
 export class UserLoginDto {
-  @ApiProperty()
+  @ApiProperty({
+    name: 'Document',
+    required: true,
+    description: 'The document should be',
+  })
   @IsString()
   @IsNotEmpty()
   document: string;
 
   @ApiProperty({
+    name: 'password',
+    required: true,
     description: 'The password should be',
     minimum: 8,
     maximum: 50,

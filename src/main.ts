@@ -18,13 +18,14 @@ async function bootstrap() {
       },
     }),
   );
-  
+
   app.enableCors();
 
   const config = new DocumentBuilder()
     .setTitle('API_MINDSET')
-    .setDescription('authentication with NestJs and MongoDB ')
+    .setDescription('The Mindset API in NestJS enables communication between clients and servers, handling HTTP requests for operations related to users, specifically students and teachers, through controllers and services that process data stored in the database, all organized within modules that encapsulate these functionalities to facilitate development and maintenance.B ')
     .setVersion('1.0')
+    .addBearerAuth()
     .addTag('Mindset')
     .build();
   const document = SwaggerModule.createDocument(app, config);

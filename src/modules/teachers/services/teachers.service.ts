@@ -81,5 +81,14 @@ export class TeachersService {
     }
     return admin;
   }
+
+  async revomeTeacher(document: string): Promise<Teachers> {
+    const teacher = await this.teacherModel.findOne({ document }).exec();
+    if (!teacher) {
+      throw new NotFoundException(`user with document address ${document} not found`);
+    }
+    return teacher;
+  }
+  
   
 }
