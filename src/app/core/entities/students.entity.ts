@@ -10,6 +10,7 @@ import {
   IsOptional,
   Length,
   Matches,
+  IsNotEmpty,
 } from 'class-validator';
 
 
@@ -19,7 +20,7 @@ export class Students extends Document {
   @IsString()
   _id: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   @Prop({ required: true })
   photo: string;

@@ -9,6 +9,7 @@ import {
   IsOptional,
   Length,
   Matches,
+  IsNotEmpty,
 } from 'class-validator';
 
 export enum Role {
@@ -25,7 +26,7 @@ export class Teachers extends Document {
   @Prop({ required: true })
   _id: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   @Prop({ required: true })
   photo: string;

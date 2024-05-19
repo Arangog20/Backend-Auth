@@ -17,6 +17,7 @@ export class TeachersController {
       example1:{
         value: {
           name: 'Rony',
+          photo: 'http://',
           email: 'rony@gmail.com',
           password: '123456789',
           document: '123456789'
