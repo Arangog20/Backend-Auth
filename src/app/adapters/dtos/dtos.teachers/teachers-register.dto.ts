@@ -11,11 +11,11 @@ export class RegisterTeachersDto {
   @ApiProperty({
     name: 'photo',
     type:'string',
-    required: false,
+    required: true,
     example: 'https://example.com/photo.jpg',
     description: 'Photo URL',
   })
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   photo: string;
 
