@@ -106,8 +106,9 @@ Javascript, HTML, CSS, Nestjs, TypeScript
 ## Authors
 
 Manuela Giraldo Arango
-- [@Arangog20](https://github.com/Arangog20)
 Juan Jaramillo
+- [@Arangog20](https://github.com/Arangog20)
+
 - [@Juanja1712](https://github.com/Juanja1712)
 
 ## Support
