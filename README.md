@@ -26,37 +26,89 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+
+# Titulo del proyecto/ Project Title
+
+RIWI MINDSET 
+
+El propósito de este documento será servir como guía para la ejecución, programación y
+lineamientos para él funcionamiento de nuestro proyecto. Contemplando los principales
+requerimientos y objetivos a cumplir por parte de nosotros como equipo, así como los
+recursos adicionales y él apoyo técnico que pueda ser necesario para él correcto desarrollo
+del mismo y él cumplimiento de las expectativas planteadas.
+
+The purpose of this document is to serve as a guide for the execution, scheduling, and guidelines for the operation of our project. It includes the main requirements and objectives to be met by our team, as well as the additional resources and technical support that may be necessary for the correct development of the project and the fulfillment of the stated expectations.
+
+## ¿Por que? / why?
+
+Surge para abordar la necesidad de optimizar el proceso de reserva de servicios, eliminando la limitación de disponibilidad y simplificando la comunicación entre el psicologo (profesor) y estudiante.
+
+It arises to address the need to optimize the appointment booking process, eliminating availability limitations and simplifying communication between the psychologist (professor) and the student.
+
+## ¿para que? / what for?
+
+El objetivo es aumentar la  accesibilidad en la gestión de reservas de citas, beneficiando tanto a los profesores registrados en el sistema como a los estudiantes, permitiendo una programación más efectiva y mayor satisfacción del estudiante y porfesor, en el momento de realizar una asesoria .
+
+The objective is to increase accessibility in the management of appointment bookings, benefiting both the professors registered in the system and the students, allowing for more effective scheduling and greater satisfaction for both students and professors when conducting a session.
+
+## ¿Para quién? / for whom?
+Está destinado a pequeñas y medianas empresas las cuales necesitan hacer test y agendamientos de citas. 
+
+It is aimed at small and medium-sized businesses that need to conduct tests and schedule appointments.
+
+## Installation / Instalacion
+
+Install  with npm
 
 ```bash
-$ npm install
+  npm install 
 ```
+    
+## Running Tests / Ejecusion de pruebas
 
-## Running the app
+Para ejecutar pruebas utilice el siguiente comando 
+
+To run tests, use the following command.
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+  npm run start:dev
 ```
 
-## Test
 
-```bash
-# unit tests
-$ npm run test
+## variables de entorno / Environment Variables
 
-# e2e tests
-$ npm run test:e2e
+Para ejecutar este proyecto, necesitarás agregar las siguientes variables de entorno a tu archivo .env.
 
-# test coverage
-$ npm run test:cov
-```
+To run this project, you will need to add the following environment variables to your .env file
+
+
+`DB_CONNECTION`= tu conexion / your conenction
+
+`DB_HOST`= tu puerto de localhost / your port of localhost
+
+`DB_NAMELOCAL`= tu base de datos local / your data base 
+
+`DB_USERNAME`= tu nombre de usuario / your username
+
+`DB_PASSWORD`= tu contraseña / your password
+
+`DB_NAME`= tu base de datos o colecion / your data base or colection
+
+`JWT_SECRET`= tu clave secreta/ your secret key
+
+`ACCES_TOKEN_EXPIRE`=  tu tiempo de expiracion / your expiration time
+
+`PORT`= tu numero de puerto ejemplo 3000 / your port number for example 3000
+
+## 🛠 Skills
+Javascript, HTML, CSS, Nestjs, TypeScript
+
+## Authors
+
+Manuela Giraldo Arango
+- [@Arangog20](https://github.com/Arangog20)
+Juan Jaramillo
+- [@Juanja1712](https://github.com/Juanja1712)
 
 ## Support
 
