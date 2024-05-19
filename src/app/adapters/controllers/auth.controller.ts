@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post, Req, UseGuards } from '@nestjs/common';
 import { Public } from '../../infrastructure/decorators/public.decorator';
 import { Roles } from '../../infrastructure/decorators';
-import { AuthService } from '../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth.student.service';
 import { UserLoginDto } from '../dtos/login.dto';
 import { SignUpDto } from '../dtos/signup.dto';
 import { ApiTags } from '@nestjs/swagger';
