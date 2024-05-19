@@ -9,6 +9,17 @@ import {
 
 export class RegisterTeachersDto {
   @ApiProperty({
+    name: 'photo',
+    type:'string',
+    required: false,
+    example: 'https://example.com/photo.jpg',
+    description: 'Photo URL',
+  })
+  @IsOptional()
+  @IsString()
+  photo: string;
+
+  @ApiProperty({
     name: 'name',
     type: String,
     required: false,
