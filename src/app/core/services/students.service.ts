@@ -3,8 +3,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Students } from '../entities/students.entity';
 import { Model } from 'mongoose';
 import { hash } from 'bcrypt';
-import { RegisterStudentsDto } from '../dtos';
+
 import axios from 'axios';
+import { RegisterStudentsDto } from 'src/app/adapters/dtos/dtos.student';
 
 
 @Injectable()

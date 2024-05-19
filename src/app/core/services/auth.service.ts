@@ -1,12 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { StudentsService } from 'src/modules/students/services/students.service';
-import { UserLoginDto } from '../dtos/login.dto';
+import { StudentsService } from 'src/app/core/services/students.service';
+import { UserLoginDto } from '../../adapters/dtos/login.dto';
 import { HashService } from "../../utils/hash.service";
-import { SignUpDto } from '../dtos/signup.dto';
-import { JwtPayload } from '../types/jwtPayload.type';
-import { Tokens } from '../types/tokens.type';
+import { SignUpDto } from '../../adapters/dtos/signup.dto';
+import { JwtPayload } from '../../infrastructure/types/jwtPayload.type';
+import { Tokens } from '../../infrastructure/types/tokens.type';
 import { JwtService } from '@nestjs/jwt';
-import { Students } from 'src/modules/students/entities/students.entity';
+import { Students } from 'src/app/core/entities/students.entity';
 
 
 @Injectable()

@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestj
 import { Teachers } from '../entities/teachers.entity';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { RegisterTeachersDto } from '../dtos';
+import { RegisterTeachersDto } from '../../adapters/dtos/dtos.teachers';
 import  axios  from 'axios';
 
 import * as bcrypt from 'bcrypt';
@@ -14,7 +14,7 @@ export class TeachersService {
     @InjectModel(Teachers.name) protected teacherModel: Model<Teachers>,
   ) {}
 
-  private readonly springBootUrl = 'http://localhost:8080/api/v1/coders';
+  private readonly springBootUrl = 'http://localhost:8080/api/v1/pyschologist';
 
   async sendDataToSpringBoot(data: any): Promise<string> {
     try {

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Teachers, TeachersSchema } from './entities/teachers.entity';
-import { TeachersController } from './controllers/teachers.controller';
-import { TeachersService } from './services/teachers.service';
+import { Teachers, TeachersSchema } from '../entities/teachers.entity';
+import { TeachersController } from '../../adapters/controllers/teachers.controller';
+import { TeachersService } from '../services/teachers.service';
 
 @Module({
   imports: [

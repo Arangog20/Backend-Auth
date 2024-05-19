@@ -1,37 +1,48 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { RegisterTeachersDto } from '../dtos';
-import { TeachersService } from '../services/teachers.service';
-import { Public, Roles } from 'src/libs/decorators';
+import {
+  Controller,
+  Body,
+  Post,
+  Get,
+  Param,
+  Delete,
+} from '@nestjs/common';
+
+import { StudentsService } from '../../core/services/students.service';
+import { Public, Roles } from 'src/app/infrastructure/decorators';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { RegisterStudentsDto } from '../dtos/dtos.student';
 
+@ApiTags ('Students')
+@Controller('students')
+export class StudentsController {
+  constructor(private readonly StudentsService: StudentsService) {}
 
-@ApiTags('Teacher')
-@Controller('teachers')
-export class TeachersController {
-  constructor(private readonly teachersService: TeachersService) {}
 
   @ApiBody({
-    type: RegisterTeachersDto,
-    description: 'Create Teachers using RegisterStudentDto. ',
+    type: RegisterStudentsDto,
+    description: 'Create students using RegisterStudentDto. ',
     examples: {
       example1:{
-        value: {
-          name: 'Rony',
-          email: 'rony@gmail.com',
-          password: '123456789',
-          document: '123456789'
+        value:{
+          name: 'manuela',
+          email: 'manuela@gmail.com',
+          password: '1037669246',
+          phone: '3115661125',
+          document: '10376692456',
+          dateBirth: '1999/06/20',
         }
       }
+      
     }
   })
   @ApiOperation({ summary: 'Create a user to the system.', description: 'Create a user to access the system.' })
   @ApiResponse({status: 201, description: 'User created successfully.'})
-  @ApiResponse({status: 400, description: 'The data entered to create the user is invalid.'}) 
+  @ApiResponse({status: 400, description: 'The data entered to create the user is invalid.'})  
   @Public()
-  @Roles('teacher')
+  @Roles('student')
   @Post('register')
-  async register(@Body() registerDto: RegisterTeachersDto) {
-    return this.teachersService.create(registerDto);
+  async register(@Body() registerDto: RegisterStudentsDto) {
+    return this.StudentsService.create(registerDto);
   }
 
   @ApiParam({
@@ -41,7 +52,7 @@ export class TeachersController {
     description: 'The email of the user to be found.',
     examples:{
       example1:{
-        value:'rony@gmail.com'
+        value:'manuela@gmail.com'
       }
     } 
   })
@@ -49,10 +60,10 @@ export class TeachersController {
   @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
   @ApiResponse({ status: 403, description: 'Forbidden.'})
   @ApiBearerAuth()
-  @Roles('teacher')
+  @Roles('student')
   @Get('email/:email')
   findByEmail(@Param('email') email: string) {
-    return this.teachersService.findByEmail(email);
+    return this.StudentsService.findByEmail(email);
   }
 
   @ApiParam({
@@ -62,26 +73,26 @@ export class TeachersController {
     description: 'The ID of the user to be found.',
     examples:{
       example1:{
-        value:'6644e72d9a4ff952425a5a55355'
+        value:'6644e72d9a4ff98eea5a2c75'
       }
     }
   })
   @ApiOperation({ summary: 'Find the user by ID of the system.', description: 'View a specific user registered in the database.' })
   @ApiResponse({status: 200, description: 'User found successfully.',})
-  @ApiBearerAuth()  
+  @ApiBearerAuth()
   @Get(':_id')
   findOne(@Param('_id') _id: string) {
-    return this.teachersService.findOne(_id);
+    return this.StudentsService.findOne(_id);
   }
 
   @ApiParam({
     name: 'document',
     type:'string',
     required: true,
-    description: 'Teacher document to delete.',
+    description: 'Student document to delete.',
     examples:{
       example1:{
-        value:'1123456789'
+        value:'10376692456'
       }
     }
   })
@@ -91,7 +102,7 @@ export class TeachersController {
   @ApiResponse({status: 404, description: 'User with the entered ID not found.'})
   @ApiResponse({status: 500, description: 'An internal server error occurred while deleting the user.'})
   @Delete('delete/:document')
-  revomeTeacher(@Param('document') document:string) {
-    return this.teachersService.revomeTeacher(document);
+  removeStudentBydocument(@Param('document') document: string) {
+    return this.StudentsService.removeStudentBydocument(document);
   }
-}          
+}
