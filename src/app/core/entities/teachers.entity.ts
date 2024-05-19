@@ -23,7 +23,7 @@ export enum Role {
 export class Teachers extends Document {
 
   @IsString()
-  @Prop({ required: true })
+  @Prop({ required: false})
   _id: string;
 
   @IsNotEmpty()
