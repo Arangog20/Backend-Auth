@@ -33,7 +33,10 @@ export class AuthService {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
 
-    return this.getTokens({ sub: user.role });
+    return this.getTokens({
+       sub: user.id,
+       role: user.role,
+       });
   }
 
   async register(SignUpDto: SignUpDto): Promise<Students> {
