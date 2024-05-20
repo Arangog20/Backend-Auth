@@ -14,7 +14,7 @@ export class TeachersService {
     @InjectModel(Teachers.name) protected teacherModel: Model<Teachers>,
   ) {}
 
-  private readonly springBootUrl = 'http://localhost:8080/api/v1/pyschologist';
+  private readonly springBootUrl = 'http://localhost:8080/api/v1/psychologist';
 
   async sendDataToSpringBoot(data: any): Promise<string> {
     try {
