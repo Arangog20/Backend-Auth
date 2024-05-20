@@ -5,7 +5,7 @@ import { TeachersModule } from './core/modules/teachers.module';
 import { StudentsModule } from './core/modules/students.module';
 import { AuthModule } from './core/modules/auth.module';
 import db_config from './infrastructure/persistence/db_config';
-import { PersistenceModule } from './infrastructure/persistence/persistence.module';
+import { PersistenceModule } from './core/modules/persistence.module';
 
 @Module({
   imports: [

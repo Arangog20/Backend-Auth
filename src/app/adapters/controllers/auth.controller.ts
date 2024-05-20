@@ -2,8 +2,8 @@ import { Body, Controller, HttpCode, HttpStatus, Post, Req, UseGuards } from '@n
 import { Public } from '../../infrastructure/decorators/public.decorator';
 import { Roles } from '../../infrastructure/decorators';
 import { AuthService } from '../../core/services/auth.student.service';
-import { UserLoginDto } from '../dtos/login.dto';
-import { SignUpDto } from '../dtos/signup.dto';
+import { UserLoginDto } from '../dtos/dtos.auth/login.dto';
+import { SignUpDto } from '../dtos/dtos.auth/signup.dto';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth/Student/Teacher')

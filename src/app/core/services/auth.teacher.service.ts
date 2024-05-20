@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UserLoginDto } from '../../adapters/dtos/login.dto';
+import { UserLoginDto } from '../../adapters/dtos/dtos.auth/login.dto';
 import { HashService } from "../../utils/hash.service";
-import { SignUpDto } from '../../adapters/dtos/signup.dto';
+import { SignUpDto } from '../../adapters/dtos/dtos.auth/signup.dto';
 import { JwtPayload } from '../../infrastructure/types/jwtPayload.type';
 import { Tokens } from '../../infrastructure/types/tokens.type';
 import { JwtService } from '@nestjs/jwt';

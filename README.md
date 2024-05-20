@@ -100,6 +100,64 @@ To run this project, you will need to add the following environment variables to
 
 `PORT`= tu numero de puerto ejemplo 3000 / your port number for example 3000
 
+## Arquitectura
+src/
+├── adapters/
+│   ├── controllers/
+│   │   ├── auth.controller.ts
+|   |   ├──students.controller.ts
+|   |   └──teahcers.controller.ts
+│   ├── dtos/
+│   │   ├── dtos.auth/
+|   |   |   ├── export.ts
+|   |   |   ├── login.dto.ts
+|   |   |   └── singup.dto.ts  
+│   │   └── dtos.studen/
+|   |   |   ├── index.ts
+|   |   |   ├── students-register.dto.ts
+|   |   |   └── students-login.dto.ts
+│   │   └── dtos.studen/
+|   |       ├── index.ts
+|   |       ├── teachers-register.dto.ts
+|   |       └── teachers-login.dto.ts
+├── core/
+│   ├── entities/
+│   │   ├── student.entity.ts
+|   |   └── teacher.entity.ts
+│   ├── services/
+│   │   ├── auth.student.service.ts
+|   |   ├── auth.teacher.service.ts
+|   |   ├── students.service.ts
+|   |   └── teahcers.service.ts
+│   ├── modules/
+│   │   ├── teacher.module.ts
+│   │   ├── student.module.ts
+│   │   ├── persistence.student.module.ts
+│   │   ├── auth.module.ts
+│   │   └── utils.module.ts
+├── infrastructure/
+│   ├── persistence/
+│   │   ├── db_config.ts
+│   │   └── export.ts
+│   ├── auth/
+│   │   ├── guards/
+│   │   │   └── jwt.guard.ts
+│   │   └── strategies/
+│   │       └── jwt.strategy.ts
+│   ├── decorators/
+│   │   ├── index.ts
+│   │   ├── private.decorator.ts
+│   │   ├── public.decorator.ts
+│   │   └── roles.decorator.ts
+│   └── types/
+│   │   ├── export.ts
+│   │   ├── jwtPayload.ts
+│   │   └── tokens.type.ts
+├── app.module.ts
+├── main.ts
+└── utils/
+    └── hash.util.ts
+
 ## 🛠 Skills
 Javascript, HTML, CSS, Nestjs, TypeScript
 

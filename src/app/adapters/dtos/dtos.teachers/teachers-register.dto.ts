@@ -30,8 +30,6 @@ export class RegisterTeachersDto {
   @IsString()
   name: string;
 
- 
-
   @ApiProperty({
     name: 'email',
     type: String,
