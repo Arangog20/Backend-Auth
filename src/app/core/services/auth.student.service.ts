@@ -7,11 +7,14 @@ import { JwtPayload } from '../../infrastructure/types/jwtPayload.type';
 import { Tokens } from '../../infrastructure/types/tokens.type';
 import { JwtService } from '@nestjs/jwt';
 import { Students } from 'src/app/core/entities/students.entity';
+import { Teachers } from '../entities/teachers.entity';
+import { TeachersService } from './teachers.service';
 
 
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly teachersService: TeachersService,
     private readonly studentsService: StudentsService,
     private readonly hash: HashService,
     private readonly jwtService: JwtService
@@ -54,6 +57,46 @@ export class AuthService {
       clan: SignUpDto.clan,
       role: SignUpDto.role,
       dateBirth: SignUpDto.dateBirth
+    });
+
+    await user.save();
+    return user;
+  }
+
+  async validateUserT(payload: JwtPayload) {
+    const user = await this.teachersService.findOne(payload.sub.toString());
+    if (!user) {
+      throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
+    }
+    return user;
+  }
+
+  async loginT(loginDto: UserLoginDto): Promise<Tokens> {
+    const { document, password } = loginDto;
+    const user = await this.teachersService.findOneByDocument(document);
+
+    if (!user || !(await this.hash.compare(password, user.password))) {
+      throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
+    }
+
+    return this.getTokens({ 
+      sub: user._id,
+      role: user.role
+    });
+  }
+
+  async registerT(SignUpDto: SignUpDto): Promise<Teachers> {
+    await this.validateEmailForSignUp(SignUpDto.email);
+
+    const hashedPassword = await this.hash.hash(SignUpDto.password);
+
+    const user = await this.teachersService.create({
+      photo:SignUpDto.photo,
+      name: SignUpDto.name,
+      document: SignUpDto.document,
+      email: SignUpDto.email,
+      password: hashedPassword,
+      role: SignUpDto.role
     });
 
     await user.save();

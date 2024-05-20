@@ -5,6 +5,7 @@ import { UtilsModule } from './utils.module';
 import { StudentsModule } from './students.module';
 import { AuthService } from '../services/auth.student.service';
 import { JwtStrategy } from '../../infrastructure/auth/strategy/jwt.strategy';
+import { TeachersModule } from './teachers.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { JwtStrategy } from '../../infrastructure/auth/strategy/jwt.strategy';
     }),
     UtilsModule,
     StudentsModule,
+    TeachersModule,
   ],
   controllers: [AuthController],
   providers: [AuthService,  JwtStrategy,],

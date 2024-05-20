@@ -22,9 +22,9 @@ export enum Role {
 @Schema({ timestamps: true })
 export class Teachers extends Document {
 
-  @IsString()
-  @Prop({ required: false})
-  _id: string;
+  @IsOptional()
+   @IsString()
+   _id: string;
 
   @IsNotEmpty()
   @IsString()
