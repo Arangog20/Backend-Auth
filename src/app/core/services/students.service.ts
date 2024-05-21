@@ -13,19 +13,22 @@ export class StudentsService {
   constructor(
     @InjectModel(Students.name) private readonly studentModel: Model<Students>,
   ) {}
+// URL de la API de Spring Boot
+   private readonly springBootUrl = 'http://localhost:8080/api/v1/coders';
 
-  private readonly springBootUrl = 'http://localhost:8080/api/v1/coders';
+// Función para enviar datos a Spring Boot
+   async sendDataToSpringBoot(data: any): Promise<string> {
+     try {
+         const response = await axios.post(this.springBootUrl, data);
+         return response.data;
+     } catch (error) {
+         throw new Error(`Error sending data to Spring Boot: ${error.message}`);
+     }
+ }
 
-  async sendDataToSpringBoot(data: any): Promise<string> {
-    try {
-        const response = await axios.post(this.springBootUrl, data);
-        return response.data;
-    } catch (error) {
-        throw new Error(`Error sending data to Spring Boot: ${error.message}`);
-    }
-}
-
+// Función para crear un nuevo estudiante
   async create(createStudentDto: RegisterStudentsDto): Promise<Students> {
+// Buscar si ya existe un estudiante con el mismo documento
     const existingStudent = await this.studentModel
       .findOne({ document: createStudentDto.document })
       .exec();
@@ -35,10 +38,11 @@ export class StudentsService {
         HttpStatus.BAD_REQUEST,
       );
     }
-
+// Hash de la contraseña del estudiante
     const hashPassword = await hash(createStudentDto.password, 10);
     createStudentDto.password = hashPassword;
 
+  // Crear un nuevo estudiante en la base de datos
     const createStudent = await this.studentModel.create(createStudentDto);
     let crear = createStudent.save();
     this.sendDataToSpringBoot(await crear);
@@ -46,6 +50,7 @@ export class StudentsService {
     return await crear;
   }
 
+  // Función para buscar un estudiante por email
   async findByEmail(email: string): Promise<Students> {
     const existingStudent = await this.studentModel
       .findOne({ email: email })
@@ -59,6 +64,7 @@ export class StudentsService {
     return existingStudent;
   }
 
+  // Función para buscar un estudiante por ID
   async findOne(_id: string): Promise<Students> {
     const findId = await this.studentModel.findById(_id).exec();
 
@@ -72,6 +78,7 @@ export class StudentsService {
     return findId;
   }
 
+  // Función para buscar un estudiante por Documento
   async findOneByDocument(document: string): Promise<Students> {
     const admin = await this.studentModel.findOne({ document }).exec();
     if (!admin) {
@@ -80,6 +87,7 @@ export class StudentsService {
     return admin;
   }
 
+  // Función para buscar un estudiante por email
   async findOneByEmailRegister(email: string): Promise<Students> {
     const admin = await this.studentModel.findOne({ email }).exec();
     if (admin) {
@@ -91,6 +99,7 @@ export class StudentsService {
     return admin;
   }
 
+  // Función para eliminar estudiante de la base de datos
   async removeStudentBydocument(document: string): Promise<Students> {
     const admin = await this.studentModel.findOneAndDelete({ document }).exec();
     if (!admin) {

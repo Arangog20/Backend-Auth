@@ -14,16 +14,16 @@ export class TeachersService {
     @InjectModel(Teachers.name) protected teacherModel: Model<Teachers>,
   ) {}
 
-  private readonly springBootUrl = 'http://localhost:8080/api/v1/psychologist';
+   private readonly springBootUrl = 'http://localhost:8080/api/v1/psychologist';
 
-  async sendDataToSpringBoot(data: any): Promise<string> {
-    try {
-        const response = await axios.post(this.springBootUrl, data);
-        return response.data;
-    } catch (error) {
-        throw new Error(`Error sending data to Spring Boot: ${error.message}`);
-    }
-}
+   async sendDataToSpringBoot(data: any): Promise<string> {
+     try {
+         const response = await axios.post(this.springBootUrl, data);
+         return response.data;
+     } catch (error) {
+         throw new Error(`Error sending data to Spring Boot: ${error.message}`);
+     }
+ }
 
   async create(createTeahcerDtos: RegisterTeachersDto): Promise<Teachers> {
     const existingTeacher = await this.teacherModel
