@@ -178,6 +178,9 @@ Javascript, HTML, CSS, Nestjs, TypeScript
 ## Tablero Trello
 [Trello](https://trello.com/b/Mi2JmiGh/riwi-mindset-2)
 
+## Esquemas UML
+[Esquemas UML - MIRO](https://miro.com/app/board/uXjVKKi5Lys=/)
+
 ## Documentacion en Notion
 [Notion](https://www.notion.so/Documentacion-riwi-mindset-1475ada2cc154617b6aedf6176fe9ed5) pasos para levantar las 3 aplicaciones 
 
