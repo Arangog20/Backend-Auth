@@ -26,8 +26,7 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-##documentacion en notion
-[Notion](https://www.notion.so/Documentacion-riwi-mindset-1475ada2cc154617b6aedf6176fe9ed5) pasos para levantar las 3 aplicaciones 
+
 
 # Titulo del proyecto/ Project Title
 
@@ -93,7 +92,7 @@ Para ejecutar este proyecto, necesitarás agregar las siguientes variables de en
 
 To run this project, you will need to add the following environment variables to your .env file
 
-
+```sh
 `DB_CONNECTION`= tu conexion / your conenction
 
 `DB_HOST`= tu puerto de localhost / your port of localhost
@@ -111,8 +110,10 @@ To run this project, you will need to add the following environment variables to
 `ACCES_TOKEN_EXPIRE`=  tu tiempo de expiracion / your expiration time
 
 `PORT`= tu numero de puerto ejemplo 3000 / your port number for example 3000
+```
 
 ## Arquitectura
+```sh
 src/
 ├── adapters/
 │   ├── controllers/
@@ -169,9 +170,16 @@ src/
 ├── main.ts
 └── utils/
     └── hash.util.ts
+```
 
 ## 🛠 Skills
 Javascript, HTML, CSS, Nestjs, TypeScript
+
+## Tablero Trello
+[Trello](https://trello.com/b/Mi2JmiGh/riwi-mindset-2)
+
+## Documentacion en Notion
+[Notion](https://www.notion.so/Documentacion-riwi-mindset-1475ada2cc154617b6aedf6176fe9ed5) pasos para levantar las 3 aplicaciones 
 
 ## Authors
 
