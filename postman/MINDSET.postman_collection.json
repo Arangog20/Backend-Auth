@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "c89a4feb-d205-4451-91d0-99ccf54095f3",
+		"name": "MINDSET",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33481513"
+	},
+	"item": [
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"photo\": \"https://example.com/photo.jpg\",\r\n  \"name\": \"Manuela\",\r\n  \"email\": \"manuela88@gmail.com\",\r\n  \"password\": \"123787777\",\r\n  \"phone\": \"1234523559\",\r\n  \"document\": \"123787777\",\r\n  \"dateBirth\": \"2021-01-01\",\r\n  \"clan\": \"meta\",\r\n  \"role\": \"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL\n}}students/register",
+							"host": [
+								"{{URL\n}}students"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"password\": \"12345678799\",\r\n  \"document\": \"12345678799\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL\n}}auth/login",
+							"host": [
+								"{{URL\n}}auth"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "found_email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL\n}}students/email/manuela88@gmail.com",
+							"host": [
+								"{{URL\n}}students"
+							],
+							"path": [
+								"email",
+								"manuela88@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "found_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL\n}}students/664bfd2f86fbc96fa20ca56c",
+							"host": [
+								"{{URL\n}}students"
+							],
+							"path": [
+								"664bfd2f86fbc96fa20ca56c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL\n}}students/delete/12345678799",
+							"host": [
+								"{{URL\n}}students"
+							],
+							"path": [
+								"delete",
+								"12345678799"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teacher",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Rony90\",\r\n  \"photo\": \"http://\",\r\n  \"email\": \"rony90@gmail.com\",\r\n  \"password\": \"258963258\",\r\n  \"document\": \"258963258\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL\n}}teachers/register",
+							"host": [
+								"{{URL\n}}teachers"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login/teacher",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"password\": \"258963258\",\r\n  \"document\": \"258963258\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL\n}}auth/login/teacher",
+							"host": [
+								"{{URL\n}}auth"
+							],
+							"path": [
+								"login",
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "found_email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL\n}}teachers/email/rony90@gmail.com",
+							"host": [
+								"{{URL\n}}teachers"
+							],
+							"path": [
+								"email",
+								"rony90@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "found_id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL\n}}teachers/delete/258965558",
+							"host": [
+								"{{URL\n}}teachers"
+							],
+							"path": [
+								"delete",
+								"258965558"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -26,6 +26,8 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+##documentacion en notion
+[Notion](https://www.notion.so/Documentacion-riwi-mindset-1475ada2cc154617b6aedf6176fe9ed5) pasos para levantar las 3 aplicaciones 
 
 # Titulo del proyecto/ Project Title
 
@@ -72,6 +74,16 @@ To run tests, use the following command.
 
 ```bash
   npm run start:dev
+```
+
+```bash
+  Spring Tools
+
+https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack
+
+Java extension
+
+https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack 
 ```
 
 
