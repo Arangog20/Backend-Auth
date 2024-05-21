@@ -35,7 +35,8 @@ export class TeachersService {
         HttpStatus.BAD_REQUEST,
       );
     }
-    const saltRounds = 10;
+
+    const saltRounds = 10; //numero de rondas para aumentar la complejidad del hash
     const hashedPassword = await bcrypt.hash(
       createTeahcerDtos.password,
       saltRounds,

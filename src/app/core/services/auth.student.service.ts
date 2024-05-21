@@ -13,6 +13,7 @@ import { TeachersService } from './teachers.service';
 
 @Injectable()
 export class AuthService {
+  // Constructor de la clase: Inicializa los servicios que se usarán en las funciones de la clase.
   constructor(
     private readonly teachersService: TeachersService,
     private readonly studentsService: StudentsService,
@@ -20,6 +21,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
+  // Valida a un usuario estudiante usando el payload del JWT.
   async validateUser(payload: JwtPayload) {
     const user = await this.studentsService.findOne(payload.sub.toString());
     if (!user) {
@@ -30,23 +32,27 @@ export class AuthService {
 
   async login(loginDto: UserLoginDto): Promise<Tokens> {
     const { document, password } = loginDto;
+    // Busca al usuario estudiante por su ID (sub) extraído del payload.
     const user = await this.studentsService.findOneByDocument(document);
 
     if (!user || !(await this.hash.compare(password, user.password))) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
 
+    // Devuelve los tokens de acceso generados.
     return this.getTokens({
        sub: user._id,
        role: user.role,
        });
   }
 
+  // Registra a un nuevo estudiante
   async register(SignUpDto: SignUpDto): Promise<Students> {
     await this.validateEmailForSignUp(SignUpDto.email);
 
     const hashedPassword = await this.hash.hash(SignUpDto.password);
 
+    // Crea un nuevo usuario estudiante con los datos proporcionados.
     const user = await this.studentsService.create({
       photo:SignUpDto.photo,
       email: SignUpDto.email,
@@ -63,6 +69,7 @@ export class AuthService {
     return user;
   }
 
+  // se repite el mismo proceso anterior pero para los profesores
   async validateUserT(payload: JwtPayload) {
     const user = await this.teachersService.findOne(payload.sub.toString());
     if (!user) {

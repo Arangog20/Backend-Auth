@@ -99,7 +99,7 @@ export class StudentsService {
     return admin;
   }
 
-  // Función para eliminar estudiante de la base de datos
+  //  eliminar estudiante de la base de datos
   async removeStudentBydocument(document: string): Promise<Students> {
     const admin = await this.studentModel.findOneAndDelete({ document }).exec();
     if (!admin) {
